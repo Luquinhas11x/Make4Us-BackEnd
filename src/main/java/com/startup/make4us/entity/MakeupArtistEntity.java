@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "makeup_artist")
 public class MakeupArtistEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
