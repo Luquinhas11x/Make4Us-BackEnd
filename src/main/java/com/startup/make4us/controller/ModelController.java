@@ -16,10 +16,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags = "Film Controller")
+@Api(tags = "Model Controller")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/film")
+@RequestMapping("/model")
 public class ModelController {
     private final ModelService modelService;
 
@@ -57,7 +57,7 @@ public class ModelController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = BaseResponseError.class),
     })
     @GetMapping()
-    public BaseResponse<Page<ModelDto>> getFilm(@PageableDefault(size = 10, sort = {"rating"}) Pageable pagination){
+    public BaseResponse<Page<ModelDto>> getModel(@PageableDefault(size = 10, sort = {"rating"}) Pageable pagination){
         return BaseResponse.<Page<ModelDto>>builder()
                 .httpCode(200)
                 .message("OK")
@@ -124,7 +124,7 @@ public class ModelController {
             @ApiResponse(code = 404, message = "Model not found", response = BaseResponseError.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = BaseResponseError.class),
     })
-    @PutMapping("/email/{id}")
+    @PutMapping("/age/{id}")
     public BaseResponse<ModelDto> uptadeModelAge(@RequestBody ModelRequest request, @PathVariable Long id){
         return BaseResponse.<ModelDto>builder()
                 .httpCode(204)
