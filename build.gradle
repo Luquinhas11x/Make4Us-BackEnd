@@ -24,16 +24,31 @@ repositories {
 }
 
 dependencies {
+	// Dependências principais do Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Lombok para reduzir boilerplate code
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// DevTools para facilitar o desenvolvimento
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Testes
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation 'io.springfox:springfox-swagger2:2.9.2'
-	implementation 'io.springfox:springfox-swagger-ui:2.10.0'
+
+	// Swagger para documentação da API
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+	// Driver Oracle
+	implementation 'com.oracle.database.jdbc:ojdbc10:19.25.0.0'
+
+	// Hibernate compatível com Jakarta Persistence
+	implementation 'org.hibernate:hibernate-core:6.0.0.Final'  // Hibernate 6.x para compatibilidade com Jakarta
+
+
 }
 
 tasks.named('test') {
