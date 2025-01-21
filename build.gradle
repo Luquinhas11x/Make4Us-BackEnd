@@ -46,7 +46,12 @@ dependencies {
 	implementation 'com.oracle.database.jdbc:ojdbc10:19.25.0.0'
 
 	// Hibernate compatível com Jakarta Persistence
-	implementation 'org.hibernate:hibernate-core:6.0.0.Final'  // Hibernate 6.x para compatibilidade com Jakarta
+	implementation 'org.hibernate:hibernate-core:6.0.0.Final'
+
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'com.auth0:java-jwt:4.3.0'
+
 
 
 }
