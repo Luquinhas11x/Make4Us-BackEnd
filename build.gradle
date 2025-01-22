@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(23)
+		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
 
@@ -39,15 +39,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	// Swagger para documentação da API
-	implementation 'io.springfox:springfox-boot-starter:3.0.0'
-
 	// Driver Oracle
 	implementation 'com.oracle.database.jdbc:ojdbc10:19.25.0.0'
 
 	// Hibernate compatível com Jakarta Persistence
 	implementation 'org.hibernate:hibernate-core:6.0.0.Final'  // Hibernate 6.x para compatibilidade com Jakarta
 
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 
 }
 

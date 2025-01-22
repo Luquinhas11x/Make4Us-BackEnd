@@ -4,38 +4,31 @@ import com.startup.make4us.dto.ModelDto;
 import com.startup.make4us.mapper.ModelMapper;
 import com.startup.make4us.request.ModelRequest;
 import com.startup.make4us.response.BaseResponse;
-import com.startup.make4us.response.BaseResponseError;
 import com.startup.make4us.service.ModelService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags = "Model Controller")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/model")
 public class ModelController {
     private final ModelService modelService;
 
-    @ApiOperation(
-            value = "Get model by name",
-            response = ModelDto.class,
-            produces = "application/json"
-    )
+    @Operation(summary = "Get model by name")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully obtain model"),
-            @ApiResponse(code = 400, message = "Bad request", response = BaseResponseError.class),
-            @ApiResponse(code = 401, message = "Unauthorized", response = BaseResponseError.class),
-            @ApiResponse(code = 404, message = "Model not found", response = BaseResponseError.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = BaseResponseError.class),
+            @ApiResponse(responseCode  = "200", description  = "Successfully obtain model"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "404", description = "Model not found"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error"),
     })
-    @GetMapping("/{id}")
+    @GetMapping("/{modelName}")
     public BaseResponse<ModelDto> getModelByName(@PathVariable String modelName) {
         return BaseResponse.<ModelDto>builder()
                 .httpCode(200)
@@ -44,18 +37,7 @@ public class ModelController {
                 .build();
     }
 
-    @ApiOperation(
-            value = "Get model list",
-            response = ModelDto.class,
-            produces = "application/json"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully obtain model list"),
-            @ApiResponse(code = 401, message = "Unauthorized", response = BaseResponseError.class),
-            @ApiResponse(code = 400, message = "Bad request", response = BaseResponseError.class),
-            @ApiResponse(code = 404, message = "Model not found", response = BaseResponseError.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = BaseResponseError.class),
-    })
+
     @GetMapping()
     public BaseResponse<Page<ModelDto>> getModel(@PageableDefault(size = 10, sort = {"rating"}) Pageable pagination){
         return BaseResponse.<Page<ModelDto>>builder()
@@ -65,20 +47,6 @@ public class ModelController {
                 .build();
     }
 
-    @ApiOperation(
-            value = "Post a new model",
-            response = ModelDto.class,
-            produces = "application/json",
-            consumes = "application/json"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Model successfully posted"),
-            @ApiResponse(code = 400, message = "Bad request", response = BaseResponseError.class),
-            @ApiResponse(code = 401, message = "Unauthorized", response = BaseResponseError.class),
-            @ApiResponse(code = 404, message = "Model not found", response = BaseResponseError.class),
-            @ApiResponse(code = 409, message = "Model already exists", response = BaseResponseError.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = BaseResponseError.class),
-    })
     @PostMapping()
     public BaseResponse<ModelDto> addModel(@RequestBody ModelRequest request){
         return BaseResponse.<ModelDto>builder()
@@ -89,19 +57,7 @@ public class ModelController {
 
     }
 
-    @ApiOperation(
-            value = "Update model email",
-            response = ModelDto.class,
-            produces = "application/json",
-            consumes = "application/json"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully edited model email"),
-            @ApiResponse(code = 400, message = "Bad request", response = BaseResponseError.class),
-            @ApiResponse(code = 401, message = "Unauthorized", response = BaseResponseError.class),
-            @ApiResponse(code = 404, message = "Model not found", response = BaseResponseError.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = BaseResponseError.class),
-    })
+
     @PutMapping("/email/{id}")
     public BaseResponse<ModelDto> uptadeModelEmail(@RequestBody ModelRequest request, @PathVariable Long id){
         return BaseResponse.<ModelDto>builder()
@@ -111,19 +67,6 @@ public class ModelController {
                 .build();
     }
 
-    @ApiOperation(
-            value = "Update model age",
-            response = ModelDto.class,
-            produces = "application/json",
-            consumes = "application/json"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully edited model age"),
-            @ApiResponse(code = 400, message = "Bad request", response = BaseResponseError.class),
-            @ApiResponse(code = 401, message = "Unauthorized", response = BaseResponseError.class),
-            @ApiResponse(code = 404, message = "Model not found", response = BaseResponseError.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = BaseResponseError.class),
-    })
     @PutMapping("/age/{id}")
     public BaseResponse<ModelDto> uptadeModelAge(@RequestBody ModelRequest request, @PathVariable Long id){
         return BaseResponse.<ModelDto>builder()
