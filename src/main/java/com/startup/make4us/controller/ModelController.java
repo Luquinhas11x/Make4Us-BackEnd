@@ -5,6 +5,7 @@ import com.startup.make4us.mapper.ModelMapper;
 import com.startup.make4us.request.ModelRequest;
 import com.startup.make4us.request.ModelRequestAge;
 import com.startup.make4us.request.ModelRequestEmail;
+import com.startup.make4us.request.ModelRequestRating;
 import com.startup.make4us.response.BaseResponse;
 import com.startup.make4us.service.ModelService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -114,6 +115,23 @@ public class ModelController {
                 .httpCode(200)
                 .message("OK")
                 .response(ModelMapper.toModelDto(modelService.updateAge(request, id)))
+                .build();
+    }
+
+    @Operation(summary = "Update model rating by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description  = "Successfully updated model rating"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "404", description = "Model not found"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error"),
+    })
+    @PutMapping("/age/{id}")
+    public BaseResponse<ModelDto> uptadeModelRating(@RequestBody ModelRequestRating request, @PathVariable Long id){
+        return BaseResponse.<ModelDto>builder()
+                .httpCode(200)
+                .message("OK")
+                .response(ModelMapper.toModelDto(modelService.updateRating(request, id)))
                 .build();
     }
 

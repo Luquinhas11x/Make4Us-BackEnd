@@ -9,6 +9,7 @@ import com.startup.make4us.repository.ModelRepository;
 import com.startup.make4us.request.ModelRequest;
 import com.startup.make4us.request.ModelRequestAge;
 import com.startup.make4us.request.ModelRequestEmail;
+import com.startup.make4us.request.ModelRequestRating;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -68,6 +69,19 @@ public class ModelService {
         ModelEntity editedModel = modelEntity.get();
 
         editedModel.setAge(request.getAge());
+
+        return modelRepository.save(editedModel);
+    }
+
+    public ModelEntity updateRating(ModelRequestRating request, Long Id) {
+        Optional<ModelEntity> modelEntity = modelRepository.findById(Id);
+
+        if (modelEntity.isEmpty()) {
+            throw new ModelNotFoundException("Model id " + Id + " not found!");
+        }
+        ModelEntity editedModel = modelEntity.get();
+
+        editedModel.setAge(request.getRating());
 
         return modelRepository.save(editedModel);
     }
