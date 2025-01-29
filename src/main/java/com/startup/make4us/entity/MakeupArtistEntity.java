@@ -22,7 +22,7 @@ public class MakeupArtistEntity {
     private String profilePhotoUrl;
 
     @Column(name = "age")
-    private String age;
+    private Integer age;
 
     @Column(name = "email")
     private String email;

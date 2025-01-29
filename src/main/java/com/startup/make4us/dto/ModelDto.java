@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ModelDto {
+    private Long id;
     private String modelName;
     private String profilePhotoUrl;
     private Integer age;

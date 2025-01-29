@@ -12,6 +12,6 @@ import lombok.experimental.SuperBuilder;
 public class MakeupArtistDto {
     private String name;
     private String profilePhotoUrl;
-    private String age;
+    private Integer age;
     private String email;
 }

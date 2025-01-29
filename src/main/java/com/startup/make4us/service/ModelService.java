@@ -7,6 +7,8 @@ import com.startup.make4us.exception.ModelNotFoundException;
 import com.startup.make4us.mapper.ModelMapper;
 import com.startup.make4us.repository.ModelRepository;
 import com.startup.make4us.request.ModelRequest;
+import com.startup.make4us.request.ModelRequestAge;
+import com.startup.make4us.request.ModelRequestEmail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,7 +46,7 @@ public class ModelService {
         return ModelMapper.toModelDto(model);
     }
 
-    public ModelEntity updateEmail(ModelRequest request, Long Id) {
+    public ModelEntity updateEmail(ModelRequestEmail request, Long Id) {
         Optional<ModelEntity> modelEntity = modelRepository.findById(Id);
 
         if (modelEntity.isEmpty()) {
@@ -57,7 +59,7 @@ public class ModelService {
         return modelRepository.save(editedModel);
     }
 
-    public ModelEntity updateAge(ModelRequest request, Long Id) {
+    public ModelEntity updateAge(ModelRequestAge request, Long Id) {
         Optional<ModelEntity> modelEntity = modelRepository.findById(Id);
 
         if (modelEntity.isEmpty()) {
@@ -68,6 +70,10 @@ public class ModelService {
         editedModel.setAge(request.getAge());
 
         return modelRepository.save(editedModel);
+    }
+
+    public void deleteById(Long id) {
+        modelRepository.deleteById(id);
     }
 
 }

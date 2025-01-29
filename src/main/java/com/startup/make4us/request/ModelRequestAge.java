@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ModelRequest {
-    private String modelName;
-    private String profilePhotoUrl;
+public class ModelRequestAge {
     private Integer age;
-    private String email;
 }

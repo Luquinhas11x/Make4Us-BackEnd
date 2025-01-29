@@ -10,6 +10,7 @@ public class ModelMapper {
 
     public static ModelDto toModelDto(ModelEntity model){
         return ModelDto.builder()
+                .id(model.getId())
                 .modelName(model.getModelName())
                 .age(model.getAge())
                 .email(model.getEmail())
@@ -24,6 +25,7 @@ public class ModelMapper {
                 .age(request.getAge())
                 .email(request.getEmail())
                 .profilePhotoUrl(request.getProfilePhotoUrl())
+                .rating(0)
                 .build();
     }
 
